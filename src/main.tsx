@@ -5,6 +5,8 @@ import './index.css'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { Registration } from './Registration/Registration.tsx';
+import { Login } from './Login/Login.tsx';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,6 +29,6 @@ console.log(analytics);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <Login />
   </React.StrictMode>,
 )
