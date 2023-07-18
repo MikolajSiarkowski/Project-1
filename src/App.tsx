@@ -1,35 +1,79 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction"
+import "./App.css"
+import { Login } from './Login/Login'
+import { Link, Routes, Route } from "react-router-dom"
+import HomePage from './HomePage'
+import { Registration } from './Registration/Registration'
+import { useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
+  const [value, setValue] = useState(null);
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+  <>
+    <BottomNavigation
+      showLabels
+      value={value}
+      onChange={(event, newValue) => {
+        setValue(newValue);
+      }}
+      sx={{
+        backgroundColor: "#1a237e",
+        color: "whitesmoke",
+        '&:hover': {
+          color: "whitesmoke",
+        }
+      }}>
+      <BottomNavigationAction 
+        component={Link}
+        to="/Homepage"
+        value="/Homepage"
+        label="Homepage"
+        sx={{
+          color: "whitesmoke",
+          '&:hover': {
+            color: "whitesmoke",
+          }
+        }}
+      />
+      <BottomNavigationAction 
+        component={Link}
+        to="/Login"
+        value="/Login"
+        label="Login" 
+        sx={{
+          color: "whitesmoke",
+          '&:hover': {
+            color: "whitesmoke",
+          }
+        }} 
+      />
+      <BottomNavigationAction 
+        component={Link}
+        to="/Registration"
+        value="/Registration"
+        label="Registration" 
+        sx={{
+          color: "whitesmoke",
+          '&:hover': {
+            color: "whitesmoke",
+          }
+        }} 
+      />
+    </BottomNavigation>
+    <Routes>
+      <Route path='/' element={<HomePage />} />
+      <Route path='/HomePage' index element={<HomePage />}/>
+      <Route path='/Login' element={<Login />}/>
+      <Route path='/Registration' element={<Registration />}/>
+      <Route path="*" element={<NoMatch />} />
+    </Routes>
+  </>
   )
 }
 
-export default App
+function NoMatch() {
+  return(
+    <div>Nothing to see here</div>
+  )
+}
